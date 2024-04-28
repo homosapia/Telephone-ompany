@@ -20,17 +20,19 @@
             </Grid.ColumnDefinitions>
             <TextBox Grid.Column="0" HorizontalAlignment="Stretch"/>
             <Button Grid.Column="1" Content="Поиск" Click="SearchButton_Click"/>
-            <Button Grid.Column="2" Content="Улицы" Click="StreetsButton_Click"/>
+            <Button Grid.Column="2" Content="Улицы" Command="{Binding AddCommand}"/>
             <Button Grid.Column="3" Content="Выгрузить CSV" Click="ExportCsvButton_Click"/>
         </Grid>
-        <DataGrid x:Name="SubscribersDataGrid" Grid.Row="1" AutoGenerateColumns="False">
+        <DataGrid x:Name="SubscribersDataGrid" Grid.Row="1" AutoGenerateColumns="False" 
+                  ItemsSource="{Binding Abonents}"
+                  SelectedItem="{Binding SelectedAbonent}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Street" Width="*" Binding="{Binding Street}"/>
-                <DataGridTextColumn Header="House Number" Width="*" Binding="{Binding HouseNumber}"/>
-                <DataGridTextColumn Header="Home Phone" Width="*" Binding="{Binding HomePhone}"/>
-                <DataGridTextColumn Header="Work Phone" Width="*" Binding="{Binding WorkPhone}"/>
-                <DataGridTextColumn Header="Mobile Phone" Width="*" Binding="{Binding MobilePhone}"/>
+                <DataGridTextColumn Header="ФИО" Width="*" Binding="{Binding Path=NameAbonent}"/>
+                <DataGridTextColumn Header="Улица" Width="*" Binding="{Binding Path=Street}"/>
+                <DataGridTextColumn Header="Номер дома" Width="*" Binding="{Binding Path=HouseNumber}"/>
+                <DataGridTextColumn Header="Домашний телефон" Width="*" Binding="{Binding Path=HomePhone}"/>
+                <DataGridTextColumn Header="Рабочий телефон" Width="*" Binding="{Binding Path=WorkPhone}"/>
+                <DataGridTextColumn Header="Мобильный телефон" Width="*" Binding="{Binding Path=MobilePhone}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
