@@ -1,10 +1,5 @@
 ﻿using Dapper;
-using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Data.Sqlite;
 
 namespace TelephoneСompany.DataBase
 {
@@ -18,15 +13,19 @@ namespace TelephoneСompany.DataBase
 
         public IEnumerable<T> Load<T>(string sql, object parameters = null)
         {
-            using var connection = new SqlConnection(_connectionString);
-            var data = connection.Query<T>(sql, parameters);
-            return data;
+            using (var connection = new SqliteConnection(_connectionString))
+            {
+                var data = connection.Query<T>(sql, parameters);
+                return data;
+            }
         }
 
         public void Save<T>(string sql, T data)
         {
-            using var connection = new SqlConnection(_connectionString);
-            connection.Execute(sql, data);
+            using (var connection = new SqliteConnection(_connectionString))
+            {
+                connection.Execute(sql, data);
+            }
         }
     }
 }

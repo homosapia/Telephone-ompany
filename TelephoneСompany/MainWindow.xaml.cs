@@ -16,8 +16,8 @@ namespace TelephoneСompany
             InitializeComponent();
             string connectionStrings = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
-            var optionsBuilder = new DbContextOptionsBuilder<AppDBContext>();
-            optionsBuilder.UseSqlite(connectionStrings);
+            var appDBContext = new AppDBContext();
+            appDBContext.Database.EnsureCreated();
 
             DataContext = new TableAbonentsViewModel(connectionStrings);
         }

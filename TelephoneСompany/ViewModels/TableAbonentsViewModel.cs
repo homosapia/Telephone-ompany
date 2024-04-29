@@ -16,27 +16,12 @@ namespace TelephoneСompany.ViewModels
         public TableAbonentsViewModel(string connectionString) 
         {
             _dbAccess = new DatabaseAccess(connectionString);
-            Abonents = new ObservableCollection<AbonentModel>
-            {
-                new AbonentModel(new Abonent()
-                {
-                    Address = new Address(){ StreetName = "улица ывф", HouseNumber = "123asd"},
-                    FirstName = "Бадажков",
-                    MiddleName = "Павел",
-                    LastName = "Максимович",
-                    Numbers = new List<PhoneNumber>()
-                    {
-                        new PhoneNumber() {TypeNumber = TypeNumder.home, Number = "+1235363"},
-                        new PhoneNumber() {TypeNumber = TypeNumder.work, Number = "+12323454563"},
-                        new PhoneNumber() {TypeNumber = TypeNumder.mobile, Number = "+123345655363"},
-                        new PhoneNumber() {TypeNumber = TypeNumder.mobile, Number = "+4233455363"}
-                    }
-                }),
-            };
+            var abonents = _dbAccess.Load<Abonent>("SELECT * FROM Abonents").Select(x => new AbonentTableModel(x));
+            Abonents = new ObservableCollection<AbonentTableModel>(abonents);
         }
 
-        public AbonentModel SelectedAbonent { get; set; }
-        public ObservableCollection<AbonentModel> Abonents { get; set; }
+        public AbonentTableModel SelectedAbonent { get; set; }
+        public ObservableCollection<AbonentTableModel> Abonents { get; set; }
 
         private RelayCommand addCommand;
         public RelayCommand AddCommand 

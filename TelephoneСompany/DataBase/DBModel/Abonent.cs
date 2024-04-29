@@ -18,6 +18,6 @@ namespace TelephoneСompany.DataBase.DBModel
 
         public Address Address { get; set; }
 
-        public List<PhoneNumber> Numbers { get; set; }
+        public List<PhoneNumber>? Numbers { get; set; }
     }
 }

@@ -15,11 +15,12 @@ namespace TelephoneСompany.Models
         private string _houseNumber { get; set; }
         private int _countAbonents { get; set; }
 
+        public StreetModel() { }
         public StreetModel(Street street)
         {
             _name = street.Name;
             _houseNumber = street.HouseNumber;
-            _countAbonents = street.Abonents.Count;
+            _countAbonents = street.Abonents?.Count ?? 0;
         }
 
         public string Name 
@@ -32,7 +33,20 @@ namespace TelephoneСompany.Models
             }
         }
 
+        public string HouseNumber
+        {
+            get => _houseNumber;
+            set
+            {
+                _houseNumber = value;
+                OnPropertyChanged("HouseNumber");
+            }
+        }
 
+        public int CountAbonents
+        {
+            get => _countAbonents;
+        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

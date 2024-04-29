@@ -18,15 +18,23 @@
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
             <TextBox x:Name="search" Grid.Column="0" HorizontalAlignment="Stretch"/>
-            <Button Grid.Column="1" Content="Поиск" Click="SearchButton_Click"/>
-            <Button Grid.Column="2" Content="Добавить улицу" Click="AddStreetButton_Click"/>
+            <Button Grid.Column="1" Content="Поиск"/>
+            <Button Grid.Column="2" Content="Добавить улицу" Command="{Binding OpenDialogStreet}"/>
         </Grid>
-        <DataGrid x:Name="SubscribersDataGrid" Grid.Row="1" AutoGenerateColumns="False">
+        <DataGrid x:Name="SubscribersDataGrid" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True"
+                  ItemsSource="{Binding Streets}"
+                  SelectedItem="{Binding SelectedStreet}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Название" Width="*" Binding="{Binding Street}"/>
-                <DataGridTextColumn Header="Номер дома" Width="*" Binding="{Binding Street}"/>
-                <DataGridTextColumn Header="Количество абонентов" Width="*" Binding="{Binding HouseNumber}"/>
-                <DataGridTextColumn Header="Добавить абонента" Width="120" Binding="{Binding HomePhone}"/>
+                <DataGridTextColumn Header="Название" Width="*" Binding="{Binding Path=Name}"/>
+                <DataGridTextColumn Header="Номер дома" Width="*" Binding="{Binding Path=HouseNumber}"/>
+                <DataGridTextColumn Header="Количество абонентов" Width="*" Binding="{Binding Path=CountAbonents}"/>
+                <DataGridTemplateColumn Header="Добавить абонента" Width="120">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Добавить" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

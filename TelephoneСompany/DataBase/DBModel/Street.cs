@@ -14,6 +14,6 @@ namespace TelephoneСompany.DataBase.DBModel
 
         public string HouseNumber { get; set; }
 
-        public List<Abonent> Abonents { get; set; }
+        public List<Abonent>? Abonents { get; set; }
     }
 }

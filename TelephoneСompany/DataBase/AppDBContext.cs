@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Configuration;
 using TelephoneСompany.DataBase.DBModel;
 
 namespace TelephoneСompany.DataBase
@@ -13,10 +14,9 @@ namespace TelephoneСompany.DataBase
 
         public DbSet<Street> Streets { get; set; }
 
-        public AppDBContext(DbContextOptions<AppDBContext> options) : base(options) 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            Database.EnsureCreated();
-            Database.Migrate();
+            optionsBuilder.UseSqlite(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
         }
     }
 }

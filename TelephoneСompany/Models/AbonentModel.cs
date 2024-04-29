@@ -9,53 +9,70 @@ using TelephoneСompany.DataBase.DBModel;
 
 namespace TelephoneСompany.Models
 {
-    public class AbonentModel
+    class AbonentModel : INotifyPropertyChanged
     {
-        private string _nameAbonent { get; set; }
-        private string _street {  get; set; }
-        private string _houseNumber {  get; set; }
-        private List<string> _homePhone { get; set; }
-        private List<string> _workPhone { get; set; }
-        private List<string> _mobilePhone { get; set; }
+        private string _firstName;
+        private string _middleName;
+        private string _lastName;
+        private string _streetName;
+        private string _houseNumber;
+        private List<PhoneNumber> _phoneNumbers;
 
-        public AbonentModel(Abonent abonent)
+        public string FirstName
         {
-            _nameAbonent = $"{abonent.FirstName} {abonent.MiddleName} {abonent.LastName}";
-            _street = abonent.Address.StreetName;
-            _houseNumber = abonent.Address.HouseNumber;
-            _homePhone = abonent.Numbers.Where(x => x.TypeNumber == TypeNumder.home).Select(x => x.Number).ToList();
-            _workPhone = abonent.Numbers.Where(x => x.TypeNumber == TypeNumder.work).Select(x => x.Number).ToList();
-            _mobilePhone = abonent.Numbers.Where(x => x.TypeNumber == TypeNumder.mobile).Select(x => x.Number).ToList();
+            get => _firstName;
+            set
+            {
+                _firstName = value;
+                OnPropertyChanged("FirstName");
+            }
         }
 
-        public string NameAbonent
+        public string MiddleName
         {
-            get => _nameAbonent;
+            get => _middleName;
+            set
+            {
+                _middleName = value;
+                OnPropertyChanged("MiddleName");
+            }
         }
 
-        public string Street
+        public string LastName
         {
-            get => _street;
+            get => _lastName;
+            set
+            {
+                _lastName = value;
+                OnPropertyChanged("LastName");
+            }
+        }
+
+        public string StreetName
+        {
+            get => _streetName;
+            set
+            {
+                _streetName = value;
+                OnPropertyChanged("StreetName");
+            }
         }
 
         public string HouseNumber
         {
             get => _houseNumber;
+            set
+            {
+                _houseNumber = value;
+                OnPropertyChanged("StreetName");
+            }
         }
 
-        public string HomePhone
+        public event PropertyChangedEventHandler? PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
-            get => string.Join("\r\n", _homePhone);
-        }
-
-        public string WorkPhone
-        {
-            get => string.Join("\r\n", _workPhone);
-        }
-
-        public string MobilePhone
-        {
-            get => string.Join("\r\n", _mobilePhone);
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
     }
 }

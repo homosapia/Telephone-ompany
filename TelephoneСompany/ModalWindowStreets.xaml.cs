@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +13,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TelephoneСompany.DataBase;
+using TelephoneСompany.ViewModels;
 
 namespace TelephoneСompany
 {
@@ -22,21 +26,12 @@ namespace TelephoneСompany
         public ModalWindowStreets()
         {
             InitializeComponent();
-        }
+            string connectionStrings = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
-        private void AddStreetButton_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+            var appDBContext = new AppDBContext();
+            appDBContext.Database.EnsureCreated();
 
-        private void ExportCsvButton_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void SearchButton_Click(object sender, RoutedEventArgs e)
-        {
-
+            DataContext = new TableStreetViewModel(connectionStrings);
         }
     }
 }
