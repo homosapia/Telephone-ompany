@@ -23,8 +23,8 @@ namespace TelephoneСompany.Models
         public TypeNumderModel TypeNumder
         {
             get { return _typeNumderModel; }
-            set 
-            { 
+            set
+            {
                 _typeNumderModel = value;
                 OnPropertyChanged("TypeNumder");
             }

@@ -28,6 +28,32 @@ namespace TelephoneСompany.Models
             _mobilePhone = abonent.Numbers.Where(x => x.TypeNumber == TypeNumder.mobile).Select(x => x.Number).ToList();
         }
 
+        public bool MatchesSearchQuery(string searchQuery)
+        {
+            if (string.IsNullOrWhiteSpace(searchQuery))
+                return true;
+
+            if(_nameAbonent.Contains(searchQuery))
+                return true;
+
+            if (_street.Contains(searchQuery))
+                return true;
+
+            if(_houseNumber.Contains(searchQuery))
+                return true;
+
+            if(_homePhone.Any(x => x.Contains(searchQuery)))
+                return true;
+
+            if (_workPhone.Any(x => x.Contains(searchQuery)))
+                return true;
+
+            if (_mobilePhone.Any(x => x.Contains(searchQuery)))
+                return true;
+
+            return false;
+        }
+
         public string NameAbonent
         {
             get => _nameAbonent;

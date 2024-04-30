@@ -1,13 +1,6 @@
-﻿using CsvHelper;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Formats.Asn1;
-using System.Globalization;
+﻿using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TelephoneСompany.Models
@@ -32,16 +25,13 @@ namespace TelephoneСompany.Models
             {
                 StringBuilder csvBuilder = new StringBuilder();
 
-                // Записываем заголовки столбцов
                 csvBuilder.AppendLine("ФИО,Улица,Дом,Домашный телефон,Рабочий телефон,Мобильный телефон");
 
-                // Записываем значения строк
                 foreach (var abonent in abonents)
                 {
                     csvBuilder.AppendLine($"{abonent.NameAbonent},{abonent.Street},{abonent.HouseNumber},{abonent.HomePhone},{abonent.WorkPhone},{abonent.MobilePhone}");
                 }
 
-                // Сохраняем CSV-файл
                 File.WriteAllText(saveDialog.FileName, csvBuilder.ToString(), Encoding.UTF8);
             }
         }

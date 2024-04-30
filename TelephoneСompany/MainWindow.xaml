@@ -18,8 +18,8 @@
                 <ColumnDefinition Width="50"/>
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
-            <TextBox Grid.Column="0" HorizontalAlignment="Stretch"/>
-            <Button Grid.Column="1" Content="Поиск" Click="SearchButton_Click"/>
+            <TextBox Grid.Column="0" HorizontalAlignment="Stretch" Text="{Binding SearchQuery}"/>
+            <Button Grid.Column="1" Content="Поиск" Command="{Binding Search}"/>
             <Button Grid.Column="2" Content="Улицы" Command="{Binding OpenTableStreet}"/>
             <Button Grid.Column="3" Content="Выгрузить CSV" Command="{Binding CreateCSV}"/>
         </Grid>
