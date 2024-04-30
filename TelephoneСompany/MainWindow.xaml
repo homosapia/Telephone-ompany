@@ -21,7 +21,7 @@
             <TextBox Grid.Column="0" HorizontalAlignment="Stretch"/>
             <Button Grid.Column="1" Content="Поиск" Click="SearchButton_Click"/>
             <Button Grid.Column="2" Content="Улицы" Command="{Binding OpenTableStreet}"/>
-            <Button Grid.Column="3" Content="Выгрузить CSV" Click="ExportCsvButton_Click"/>
+            <Button Grid.Column="3" Content="Выгрузить CSV" Command="{Binding CreateCSV}"/>
         </Grid>
         <DataGrid x:Name="SubscribersDataGrid" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True"
                   ItemsSource="{Binding Abonents}"

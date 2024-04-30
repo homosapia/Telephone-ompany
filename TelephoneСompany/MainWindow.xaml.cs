@@ -22,21 +22,9 @@ namespace TelephoneСompany
             DataContext = new TableAbonentsViewModel(connectionStrings);
         }
 
-        private void ExportCsvButton_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             throw new NotImplementedException();
-        }
-
-        private void StreetsButton_Click(object sender, RoutedEventArgs e)
-        {
-            var streetsWindow = new ModalWindowStreets();
-            streetsWindow.Owner = this;
-            streetsWindow.Show();
         }
     }
 }
