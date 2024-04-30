@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TelephoneСompany"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Список абонентов" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -20,7 +20,7 @@
             </Grid.ColumnDefinitions>
             <TextBox Grid.Column="0" HorizontalAlignment="Stretch"/>
             <Button Grid.Column="1" Content="Поиск" Click="SearchButton_Click"/>
-            <Button Grid.Column="2" Content="Улицы" Command="{Binding AddCommand}"/>
+            <Button Grid.Column="2" Content="Улицы" Command="{Binding OpenTableStreet}"/>
             <Button Grid.Column="3" Content="Выгрузить CSV" Click="ExportCsvButton_Click"/>
         </Grid>
         <DataGrid x:Name="SubscribersDataGrid" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True"

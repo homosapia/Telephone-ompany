@@ -23,12 +23,12 @@ namespace TelephoneСompany.ViewModels
         public AbonentTableModel SelectedAbonent { get; set; }
         public ObservableCollection<AbonentTableModel> Abonents { get; set; }
 
-        private RelayCommand addCommand;
-        public RelayCommand AddCommand 
+        private RelayCommand openTableStreet;
+        public RelayCommand OpenTableStreet
         {   
             get 
             {
-                return addCommand ?? (addCommand = new RelayCommand(x => 
+                return openTableStreet ?? (openTableStreet = new RelayCommand(x => 
                 {
                     var windowStreet = new ModalWindowStreets();
                     windowStreet.ShowDialog();

@@ -57,7 +57,17 @@ namespace TelephoneСompany.ViewModels
             {
                 return addAbonent ?? (addAbonent = new RelayCommand(x =>
                 {
-                    var window = new AddStreetDialogBox(new StreetModel());
+                    var window = new AddAbonentDialogBox(new AbonentModel());
+                    if (window.ShowDialog() == true)
+                    {
+                        //var streetModel = window.Abonent;
+                        //Street street = new Street()
+                        //{
+                        //    Name = streetModel.Name,
+                        //    HouseNumber = streetModel.HouseNumber,
+                        //};
+                        //_dbAccess.Save<Street>("INSERT INTO Streets (Name, HouseNumber) VALUES (@Name, @HouseNumber)", street);
+                    }
                 }));
             }
         }

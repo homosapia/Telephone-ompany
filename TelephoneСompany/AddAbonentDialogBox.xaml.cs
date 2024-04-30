@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 using TelephoneСompany.Models;
 
 namespace TelephoneСompany
@@ -20,11 +8,12 @@ namespace TelephoneСompany
     /// </summary>
     public partial class AddAbonentDialogBox : Window
     {
-        public AbonentTableModel Abonent;
-        public AddAbonentDialogBox(AbonentTableModel abonent)
+        public AbonentModel Abonent;
+        public AddAbonentDialogBox(AbonentModel abonent)
         {
             InitializeComponent();
             Abonent = abonent;
+            DataContext = Abonent;
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)

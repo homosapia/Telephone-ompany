@@ -1,22 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using TelephoneСompany.DataBase.DBModel;
+using TelephoneСompany.Commands;
 
 namespace TelephoneСompany.Models
 {
-    class AbonentModel : INotifyPropertyChanged
+    public class AbonentModel : INotifyPropertyChanged
     {
         private string _firstName;
         private string _middleName;
         private string _lastName;
         private string _streetName;
         private string _houseNumber;
-        private List<PhoneNumber> _phoneNumbers;
+
+        public PhoneNumberModel SelectedPhoneNumbers { get; set; }
+        public ObservableCollection<PhoneNumberModel> PhoneNumbers { get; set; }
+
+        public AbonentModel()
+        {
+            PhoneNumbers = new ObservableCollection<PhoneNumberModel>();
+        }
 
         public string FirstName
         {
@@ -67,6 +70,33 @@ namespace TelephoneСompany.Models
                 OnPropertyChanged("StreetName");
             }
         }
+
+        private RelayCommand _addPhoneNumber;
+        public RelayCommand AddPhoneNumber
+        {
+            get
+            {
+                return _addPhoneNumber ?? (_addPhoneNumber = new RelayCommand(x =>
+                {
+                    PhoneNumberModel phoneNumber = new PhoneNumberModel();
+                    SelectedPhoneNumbers = phoneNumber;
+                    PhoneNumbers.Add(phoneNumber);
+                }));
+            }
+        }
+
+        public RelayCommand DeletePhoneNumber
+        {
+            get
+            {
+                return new RelayCommand(x =>
+                {
+                    PhoneNumbers.Remove(SelectedPhoneNumbers);
+                    SelectedPhoneNumbers = PhoneNumbers.First();
+                });
+            }
+        }
+
 
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

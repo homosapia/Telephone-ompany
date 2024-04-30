@@ -1,9 +1,5 @@
-﻿using System.Configuration;
-using System.Windows;
-using TelephoneСompany.DataBase;
-using TelephoneСompany.DataBase.DBModel;
+﻿using System.Windows;
 using TelephoneСompany.Models;
-using TelephoneСompany.ViewModels;
 
 namespace TelephoneСompany
 {
